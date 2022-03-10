@@ -59,7 +59,7 @@ avaliações acima. Quais foram os resultados? Qual a justificativa para tal res
 Lembra do problema 5 da lista de exercícios sobre [algoritmos de busca](./exerciciosBusca.pdf)?
 
 *A banda U2 tem um concerto que começa daqui a 17 minutos e
-  todos precisam cruzar uma ponte par chegar lá. Todos os 4
+  todos precisam cruzar uma ponte para chegar lá. Todos os 4
   participantes estão do mesmo lado da ponte. É noite. Só
   há uma lanterna. A ponte suporta, no máximo, duas
   pessoas. Qualquer pessoa que passe, uma ou duas, deve passar com a
@@ -68,7 +68,7 @@ Lembra do problema 5 da lista de exercícios sobre [algoritmos de busca](./exerc
   para passar de um lado para o outro. O par deve andar no tempo do
   menos veloz: Bono: 1 minuto para passar; Edge: 2 minutos para
   passar; Adam: 5 minutos para passar; e Larry: 10 minutos para
-  passar.*
+  passar.
 
 * Crie uma classe do tipo `State` para resolver este problema. Leve em consideração as perguntas e respostas do [enunciado anterior](./exerciciosBusca.pdf) para implementar: a estrutura de dados necessária para representar os estados; as operações e como elas afetam os estados; custo de cada operação, e; outros itens relevantes para a solução do problema.
 
@@ -82,6 +82,10 @@ Lembra do problema 5 da lista de exercícios sobre [algoritmos de busca](./exerc
 O cientista da computação Donal Knuth em 1964 conjecturou que **todo** número inteiro positivo pode ser gerado a partir do número **4** aplicando-se uma combinação de fatorial, raiz quadrada e arredondamento para baixo. Por exemplo, o número 2 pode ser gerado por `sqrt(4)`, o número 1 por `round_down(sqrt(sqrt(4)))` e o número 5 por `round_down(sqrt(sqrt(sqrt(sqrt(sqrt(factorial(factorial(4))))))))`.
 
 * Implemente um agente autônomo (uma classe do tipo `State`) que dado um número inteiro positivo qualquer gere uma sequência de operações que transformam o número 4 no número informado. Para orientar o desenvolvimento da sua solução sugire-se utilizar o arquivo de teste `pytest test_KnuthProblem.py --capture=tee-sys`.
+
+* A sua implementação funciona para todos os casos? 
+
+* Quais as limitações que devem ser consideradas na sua implementação?
 
 ## Problema do cavalo no tabuleiro de xadrez 
 
@@ -108,3 +112,7 @@ Vimos em sala de aula o problema do caminho entre cidades considerando o seguint
 * Depois de testado, quais foram os resultados? As soluções encontradas são ótimas? Você percebeu alguma mudança no tempo de processamento dependendo do objetivo desejado?
 
 * Se este mapa fosse maior? Será que seria possível utilizar os algoritmos vistos até então para resolver o problema? 
+
+# Próximas atividades
+
+[[Próximas atividades](./implementacoes_busca_parte2.md)]
