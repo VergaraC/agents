@@ -30,10 +30,13 @@ class Map(State):
         return self.cost_value
     
     def print(self):
-        pass
+        return str(self.operator)
     
     def env(self):
-        pass
+        return self.city+"#"+str(self.cost())
+
+    def h(self):
+        return int(Map.g.edges[self.city,self.goal]["distance"])
 
 
     @staticmethod
@@ -61,7 +64,12 @@ class Map(State):
             'x':[(1,'m')]
             }
 
-
+    @staticmethod
+    def createHeuristics():
+        Map.g = nx.Graph()
+        f = csv.reader(open("MapHeuristics.csv", "r"))
+        for row in f:
+            Map.g.add_edge(row[0], row[1], distance = row[2])
 def main():
 
     Map.createArea()
