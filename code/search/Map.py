@@ -15,8 +15,10 @@ class Map(State):
     
     def sucessors(self):
         sucessors = []
-        # TODO
-        pass
+        vizinhos = Map.area[self.city]
+        for v in vizinhos:
+            sucessors.append(Map(v[1],v[0],v[1], self.goal))
+        return sucessors
     
     def is_goal(self):
         return (self.city == self.goal)
@@ -25,7 +27,7 @@ class Map(State):
         return "Encontrando o menor caminho entre cidades"
     
     def cost(self):
-        pass
+        return self.cost_value
     
     def print(self):
         pass

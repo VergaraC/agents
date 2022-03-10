@@ -4,27 +4,28 @@ import math
 
 class KnuthProblem(State):
 
-    def __init__(self, number, goal, operation):
+    def __init__(self, number, goal, operator):
         self.number = number
-        self.operation = operation
+        self.operator = operator
         self.goal = goal
         
     
     def sucessors(self):
         sucessors = []
-        self.number = int(self.number)
-        if self.operation == "round_down":
+        
             
-            if (self.number) > self.goal**2:
-                sucessors.append(KnuthProblem(math.sqrt(self.number), self.goal, "sqrt"))
-                
-            else:
-                sucessors.append(KnuthProblem(math.factorial(self.number), self.goal, "factorial"))
+        if self.number < self.goal*self.goal and type(self.number) == int:
+            sucessors.append(KnuthProblem(math.factorial(self.number), self.goal, "factorial"))
+            
+        elif self.number - self.goal < 1:
             sucessors.append(KnuthProblem(int(self.number), self.goal, "round_down"))
+        else:
+            sucessors.append(KnuthProblem(math.sqrt(self.number), self.goal, "sqrt"))
+        
         return sucessors
     
     def is_goal(self):
-        return (self.number == self.goal)
+        return self.number == self.goal
     
     def description(self):
         return "Describe the problem"
@@ -33,7 +34,7 @@ class KnuthProblem(State):
         return 1
 
     def print(self):
-        return str(self.operation)
+        return str(self.operator)
     
     def env(self):
         #
@@ -50,14 +51,19 @@ class KnuthProblem(State):
         # - para o problema do soma 1 e 2: return str(self.number)
         # - para o problema das cidades: return self.city
         #
-        return self.number+"#"+str(self.cost())
+        return str(self.number)+"#"+str(self.cost)
 
+
+from datetime import datetime
 
 def main():
     print('Busca em profundidade iterativa')
     state = KnuthProblem('')
-    algorithm = BuscaLargura()
+    algorithm = BuscaProfundidadeIterativa()
+    inicio = datetime.now()
     result = algorithm.search(state)
+    fim = datetime.now()
+    print(fim - inicio)
     if result != None:
         print('Achou!')
         print(result.show_path())
