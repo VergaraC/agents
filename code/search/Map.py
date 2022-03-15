@@ -1,8 +1,11 @@
 from SearchAlgorithms import BuscaProfundidadeIterativa
 from SearchAlgorithms import BuscaCustoUniforme
+from SearchAlgorithms import BuscaGananciosa
+from SearchAlgorithms import AEstrela
 from Graph import State
 import time
 import networkx as nx
+import random
 import csv
 
 class Map(State):
@@ -15,35 +18,38 @@ class Map(State):
     
     def sucessors(self):
         sucessors = []
-        vizinhos = Map.area[self.city]
-        for v in vizinhos:
-            sucessors.append(Map(v[1],v[0],v[1], self.goal))
+        neighbors = Map.area[self.city]
+        for next_city in neighbors:
+            sucessors.append(Map(next_city[1], next_city[0], next_city[1], self.goal))
         return sucessors
     
     def is_goal(self):
         return (self.city == self.goal)
     
     def description(self):
-        return "Encontrando o menor caminho entre cidades"
+        return "The map of cities with road distances"
     
     def cost(self):
+        #return the cost to get at city "city"
         return self.cost_value
     
     def print(self):
         return str(self.operator)
     
     def env(self):
+        #return self.city
         return self.city+"#"+str(self.cost())
 
     def h(self):
-        return int(Map.g.edges[self.city,self.goal]["distance"])
-
+        return int(Map.g.edges[self.city,self.goal]['distance'])
+        #return random.randint(1,10)
+        #return 1
 
     @staticmethod
     def createArea():
         #
         # TODO mover a definicao do mapa de uma forma hard-coded para para leitura
-        # a partir de um arquivo. 
+        # a partir de um arquivo, similar ao que é feito no metodo createHeuristics()
         # 
         Map.area = {
             'a':[(3,'b'),(6,'c')],
@@ -66,16 +72,25 @@ class Map(State):
 
     @staticmethod
     def createHeuristics():
+        #
+        # O arquvo MapHeuristics.csv considera apenas os objetivos "o" e "x"
+        # TODO modificar o arquivo para considerar todas as cidades. talvez modificar
+        # a estrutura do arquivo considerando uma estrutura otimizada
+        #
         Map.g = nx.Graph()
-        f = csv.reader(open("MapHeuristics.csv", "r"))
-        for row in f:
-            Map.g.add_edge(row[0], row[1], distance = row[2])
+        f = csv.reader(open("MapHeuristics.csv","r"))
+        for row in f: 
+            Map.g.add_edge(row[0],row[1], distance = row[2])
+
+
 def main():
 
     Map.createArea()
-    state = Map('i', 0, 'i', 'x')
-    algorithm = None #TODO
+    Map.createHeuristics()
 
+    print('Busca por algoritmo A*: sair de p e chegar em n')
+    state = Map('i', 0, 'i', 'x')
+    algorithm = AEstrela()
     ts = time.time()
     result = algorithm.search(state)
     tf = time.time()
@@ -87,5 +102,6 @@ def main():
     print('O custo da solucao eh: '+str(result.g))
     print('')
     
+
 if __name__ == '__main__':
     main()
