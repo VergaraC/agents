@@ -37,18 +37,18 @@ class N_QueensProblem(State):
                         temp[i][j] = 0
                         temp[i+1][j] = 1
                         sucessores.append(N_QueensProblem(self.size, temp))
-                    #move left
-                    if((j - 1) >=0 and self.board[i][j-1] == 0):
-                        temp = self.board.copy()
-                        temp[i][j] = 0
-                        temp[i][j-1] = 1
-                        sucessores.append(N_QueensProblem(self.size, temp))
-                    #move right
-                    if((j + 1) < self.size and self.board[i][j+1] == 0):
-                        temp = self.board.copy()
-                        temp[i][j] = 0
-                        temp[i][j+1] = 1
-                        sucessores.append(N_QueensProblem(self.size, temp))
+                    # #move left
+                    # if((j - 1) >=0 and self.board[i][j-1] == 0):
+                    #     temp = self.board.copy()
+                    #     temp[i][j] = 0
+                    #     temp[i][j-1] = 1
+                    #     sucessores.append(N_QueensProblem(self.size, temp))
+                    # #move right
+                    # if((j + 1) < self.size and self.board[i][j+1] == 0):
+                    #     temp = self.board.copy()
+                    #     temp[i][j] = 0
+                    #     temp[i][j+1] = 1
+                    #     sucessores.append(N_QueensProblem(self.size, temp))
         return sucessores
                       
     def is_goal(self):
@@ -103,8 +103,8 @@ class N_QueensProblem(State):
         board = np.zeros( (self.size,self.size) )
         for i in range(0,self.size):
             line = random.randrange(0, self.size)
-            column = random.randrange(0, self.size)
-            board[line,column] = 1
+            #column = random.randrange(0, self.size)
+            board[line,i] = 1
         return board
 
     def validBoard(self):
