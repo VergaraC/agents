@@ -9,7 +9,7 @@ Esta lista de exercícios possui os exercícios que deverão ser entregues. A av
 
 As questões abaixo devem ser respondidas e entregues via blackboard. Cada questão tem peso igual. 
 
-1. Considere o grafo abaixo onde o número sobre as arestas é o custo de
+a. Considere o grafo abaixo onde o número sobre as arestas é o custo de
 cada ação e o número  próximo de cada nodo é a heurística considerada até o
 estado objetivo. Note que cada arco é bidirecional. Considere o estado A
 como inicial e o estado G como o estado objetivo. Em todos os algoritmos utilizados existe um único tipo de poda da árvore de busca que é: não pode-se abrir nenhum sucessor
@@ -19,21 +19,15 @@ igual ao pai do nodo.
 <img src="img/grafo-2.png" alt="Grafo" width="400"/>
 </p>
 
-    1. Desenhe a árvore que o algoritmo A* cria. Detalhe a árvore o 
-    máximo possível. Em cada nodo aberto na árvore descreva o custo para chegar 
-    naquele nodo mais o valor fornecido pela heurística.
-
+    1. Desenhe a árvore que o algoritmo A* cria. Detalhe a árvore o máximo possível. Em cada nodo aberto na árvore descreva o custo para chegar naquele nodo mais o valor fornecido pela heurística.
     2. Descreva o caminho para a solução do problema que o algoritmo A* encontra.
-
     3. A heurística utilizada no problema é admissível? Explique.
-
     4. O algoritmo A* é ótimo se o valor da função *h* fosse igual a 0 (*h(n) = 0*)? Justifique.
-
     5. O algoritmo A* é ótimo se o valor da função *f* for sempre 0 (*f(n) = g(n) + h(n) = 0*)? Justifique.
 
-2. Descreve qual é a principal diferente entre os algoritmos Subida da Montanha e os demais algoritmos que fazem uso de heurísticas vistos nesta disciplina.
+b. Descreve qual é a principal diferente entre os algoritmos Subida da Montanha e os demais algoritmos que fazem uso de heurísticas vistos nesta disciplina.
 
-3. Considere os problemas das cidades. No exercício realizado em sala de aula foi utilizado com grafo com dezenas de nodos e uma heurística baseada na distância em linha reta entre os nodos. O que seria necessário fazer para utilizar esta solução em uma situação real, com milhares ou dezenas de milhares de nodos?
+c. Considere os problemas das cidades. No exercício realizado em sala de aula foi utilizado com grafo com dezenas de nodos e uma heurística baseada na distância em linha reta entre os nodos. O que seria necessário fazer para utilizar esta solução em uma situação real, com milhares ou dezenas de milhares de nodos?
 
 ## 8-Puzzle
 
