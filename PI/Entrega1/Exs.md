@@ -24,5 +24,5 @@
 ##### b) A principal diferença entre os algoritmos Subida da Montanha e os demais algoritmos que utilizam heurística é o fato do Subida de Montanha criar uma nova árvore para os sucessores, assim não utilizando memória nem tendo o caminho que fez para chegar no resultado.
 
 
-##### c)
+##### c) Seria necessário ter uma tabela ou grafo das cidades com suas latitudes e longitudes, assim seria possível calcular a distância linear entre as cidades e utilizar esse valor para a heurística, assim ocupando menos memória.
 
