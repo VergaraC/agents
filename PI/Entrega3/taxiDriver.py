@@ -50,7 +50,7 @@ class TaxiDriver(State):
     def cost(self):
         return 1 
 
-    def h(self):
+    def h(self): #Utiliza distancia de Manhattan para calcular o valor da heuristica
 
         if self.passIn:
             x = abs(self.taxi[1] - self.goal[1])
@@ -62,7 +62,7 @@ class TaxiDriver(State):
             
         return x + y
 
-    def checkTupla(tupla):
+    def checkTupla(tupla): # Checa se a tupla realmente tem 2 valores (x,y)
         for i in tupla:
             if i == 0:
                 raise ValueError("Tupla com problema")
