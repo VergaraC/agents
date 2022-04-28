@@ -1,9 +1,11 @@
 from FourInRow import FourInRow
 from RandomPlayer import RandomPlayer
 from ManualPlayer import ManualPlayer
+from MyPlayer import MyPlayer
 
 players = [
-    RandomPlayer(),
+
+    MyPlayer(),
     ManualPlayer()]
     
 points = {}
