@@ -92,7 +92,17 @@ class MyPlayer(Player):
                             if (board[i,j-2] == player) and (board[i,j-1] == 0) and (board[i+1,j-1] != 0):
                                 threat = j-1
                                 return True, threat
-                 
+            for i in reversed(range(7)): 
+                counter = 0
+            for j in range(5):
+                if(board[j][i]== player) and (board[j+1][i]== player):
+                    counter+=1
+                else:
+                    counter = 0
+                if counter >=2:
+                    if j>=2:
+                        if board[j-2][i] == 0:
+                            return True, i
         return False, threat
 
 
@@ -220,7 +230,8 @@ class MyPlayer(Player):
                         if j >= 2:
                             if (board[i,j-2] == player) and (board[i,j-1] == 0) and (board[i+1,j-1] != 0):
                                 retorno["gap"] = retorno["gap"]+1'''
-                                
+        
+                                  
         return retorno
     
     def count_row_column(self, player, board):
