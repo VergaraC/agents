@@ -2,12 +2,14 @@ from FourInRow import FourInRow
 from RandomPlayer import RandomPlayer
 from ManualPlayer import ManualPlayer
 from MyPlayer import MyPlayer
+from BarthPlayer import BarthPlayer
 
 players = [
 
     MyPlayer(),
-    ManualPlayer()]
-    
+    BarthPlayer(),
+    #RandomPlayer()
+    ]
 points = {}
 for p in players:
     points[p.name()] = 0
