@@ -95,12 +95,12 @@ class MyPlayer(Player):
             for i in reversed(range(7)): 
                 counter = 0
             for j in range(5):
-                if(board[j][i]== player) and (board[j+1][i]== player):
+                if(board[j][i] == player) and (board[j+1][i] == player):
                     counter+=1
                 else:
                     counter = 0
-                if counter >=2:
-                    if j>=2:
+                if counter >= 2:
+                    if j >= 2:
                         if board[j-2][i] == 0:
                             return True, i
         return False, threat
@@ -161,7 +161,7 @@ class MyPlayer(Player):
 
     def domain_center(self, player, board):
         h = np.matrix([
-            [0., 0., 0., 1., 0., 0., 0.],
+            [0., 0., 0., 0., 0., 0., 0.],
             [0., 0., 1., 1., 1., 0., 0.],
             [0., 0., 1., 1., 1., 0., 0.],
             [0., 1., 1., 1., 1., 1., 0.],

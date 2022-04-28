@@ -1,14 +1,32 @@
 1) Que algoritmo deve ser utilizado para desenvolver um agente jogador de Connect4 PopOut vencedor? Deve-se utilizar uma implementação de Min-Max com poda alpha-beta? Se sim, qual a profundidade que deverá ser utilizada para evitar processamentos superiores a 10 segundos por jogada? Qual a função de utilidade que deve ser utilizada?
 
+    O uso do MinMax não é necessário para um bom agente jogador de Connect4, por exemplo uso e machine learning ou o NegMax. No caso do MinMax a implementação com poda alpha-beta é útil para poder calcular utilizando uma maior profundidade, visto que com as podas teremos menos sucessores a serem levados em consideração.
+    O modelo com paralelismo conseguia calcular com até 8 de profundidade, mas a versão sem paralelismo chega até 6 sem passar de 10 segundos.
+    A função de utilidade é o eval() onde é calculado um score baseado no board e a possibilidade de conexões das suas peças, esse score é utilizado pelo MinMax para a escolha da próxima movimentação
+
 2) O seu jogador faz uso de alguma base de conhecimento? Se sim, como ela é utilizada durante o processo de tomada de decisão?
+
+    É utilizado a função MyEmergency e a isThereAnyEmergency, a primeira checa se há 2 tokens conectadas, 1 gap e outra token, onde se o gap for preenchido o player ganhará, essa função foi feita para ser rodada para o player e seu oponente, mas quando é rodada para o oponente dá erro e não consegui resolver, então é apenas utilizada para o player.
+    A segunda função checa se há 3 conexões do oponente, a fim de evitar que ele ganhe.
+    Caso alguma dessas funções retorne algo o Resultado do MinMax é ignorado.
 
 3) Foi utilizada alguma função de utilidade não definida manualmente, por exemplo, alguma função de utilidade gerada a partir de um processo de aprendizagem de máquina supervisionado? Se sim, como é que foi o treinamento desta função de utilidade? Como foi feita a integração desta função de utilidade com o restante do código?
 
     Não 
     
 4) Qual a sua expectativa com relação ao desempenho do seu agente? Você acredita que ele irá desempenhar bem na competição? Por que? Você executou testes contra outros jogadores? Qual foram os resultados?
+    
+    O primeiro agente feito utilizando parelização acredito que teria um bom desempenho, visto que ele calculava o movimento com 8 de profundidade, e ganhava do BarthPlayer nos 2 lados e  do Random 200 vezes de 200 partidas.
+    Já o agente que está na competição não espero que tenha um desempenho muito bom, visto que ele não utiliza paralelismo, podendo utilizar profundidade 6 e as suas heurísticas não estão perfeitas ainda. Mas mesmo assim ganha do BarthPlayer nos 2 lados e do Random 197 vezes de 200 partidas.
 
 5) Quais foram as principais referências utilizadas para a implementação do seu jogador?
 
+    Player modelo feito pelo Professor Fabrício Barth - https://github.com/fbarth/agents/blob/main/code/games/fourinrow/BarthPlayer.py
+    Artigo sobre heurísticas para o MinMax - https://pdfs.semanticscholar.org/f323/3fa36a5026b42c7f331a5c98e66aad9d3e8c.pdf
+    Paralelização do MinMax - https://www.researchgate.net/publication/353907084_Game_Theory_Minimax_Algorithm_-A_parallel_approach
+    Exemplo de Paralelização do MinMax para xadrez - https://github.com/gsig/java-chess-ai
+
 6) Existem diferenças significativas entre um jogador de Connect4 e um jogador de Connect4 PopOut em termos de árvore de busca e função de avaliação? É possível utilizar o jogador implementado para o Connect4 PopOut em competições de Connect4 sem muitas modificações?
+    O modelo base dos 2 jogos é o mesmo, a diferença é que no PopOut há mais sucessores a serem levados em conta (1 a mais para cada token do player que está na última fileira), assim também é necessário modificar a função de avaliação para esses casos para os movimentos do seu player e inimigo. 
+    Assim um jogador implementado em um dos modelos pode ser facilmente alterado para o outro.
 
