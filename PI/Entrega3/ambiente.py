@@ -9,6 +9,6 @@ for a in taxi.path():
     state, reward, done, info = env.step(a)
     env.render()
 if done:
-    print("Soube encontrar a solucao correta")
+    print("Chegou a Solução")
 else:
-    print("Não soube encontrar a solução")
+    print("Não Chegou a Solução")

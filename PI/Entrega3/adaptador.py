@@ -4,7 +4,7 @@ import numpy as np
 
 class MeuTaxi():
     def __init__(self,map,positions):  # positions = (taxi row, taxi column, passenger index, destination index)
-        streets = { 0:'1', 
+        caminho = { 0:'1', 
                     1:'3',
                     2:'5',
                     3:'7',
@@ -19,7 +19,7 @@ class MeuTaxi():
                 M[i,j] = map[i,j].decode('UTF-8')
                 if M[i,j] in points:
                     waypoints.append([i,j])
-        start = [positions[0]+1,int(streets[positions[1]])]
+        start = [positions[0]+1,int(caminho[positions[1]])]
         M[start[0],start[1]] = '0'
         self.state = TaxiDriver(start,waypoints[positions[2]],map,False,'',waypoints[positions[3]])
         self.algorithm = AEstrela()
@@ -32,4 +32,4 @@ class MeuTaxi():
             operations = list(map(int,operations))
             return operations
         else:
-            return 'Nao achou solucao'
+            return 'Nao chegou a Solução'
