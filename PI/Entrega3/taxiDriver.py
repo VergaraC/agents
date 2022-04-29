@@ -1,8 +1,6 @@
 from SearchAlgorithms import AEstrela
 from Graph import State
 import numpy as np
-import time
-import gym
 
 class TaxiDriver(State):
 
@@ -25,20 +23,20 @@ class TaxiDriver(State):
 
         #esquerda
         if (self.taxi and [self.taxi[0],self.taxi[1]-1]) not in self.barreiras:
-            sucessors.append(TaxiDriver([self.taxi[0],self.taxi[1]-1], self.pasPosition, self.barreiras, self.passIn, "esquerda", self.goal))
+            sucessors.append(TaxiDriver([self.taxi[0],self.taxi[1]-1], self.pasPosition, self.barreiras, self.passIn, "3", self.goal))
         #direita
         if (self.taxi and [self.taxi[0],self.taxi[1]+1]) not in self.barreiras:
-            sucessors.append(TaxiDriver([self.taxi[0],self.taxi[1]+1], self.pasPosition, self.barreiras, self.passIn, "direita", self.goal))
+            sucessors.append(TaxiDriver([self.taxi[0],self.taxi[1]+1], self.pasPosition, self.barreiras, self.passIn, "2", self.goal))
         #cima
         if (self.taxi and [self.taxi[0]-1,self.taxi[1]]) not in self.barreiras:
-            sucessors.append(TaxiDriver([self.taxi[0]-1,self.taxi[1]], self.pasPosition, self.barreiras, self.passIn, "cima", self.goal))
+            sucessors.append(TaxiDriver([self.taxi[0]-1,self.taxi[1]], self.pasPosition, self.barreiras, self.passIn, "1", self.goal))
         #baixo
         if (self.taxi and [self.taxi[0]+1,self.taxi[1]]) not in self.barreiras:
-            sucessors.append(TaxiDriver([self.taxi[0]+1,self.taxi[1]], self.pasPosition, self.barreiras, self.passIn, "baixo", self.goal))
+            sucessors.append(TaxiDriver([self.taxi[0]+1,self.taxi[1]], self.pasPosition, self.barreiras, self.passIn, "0", self.goal))
         
         #pega passageiro
         if (not self.passIn) and (self.taxi == self.pasPosition):
-            sucessors.append(TaxiDriver(self.taxi, self.pasPosition, self.barreiras, True, "pegou", self.goal))
+            sucessors.append(TaxiDriver(self.taxi, self.pasPosition, self.barreiras, True, "4", self.goal))
         return sucessors
     
     def is_goal(self):
@@ -85,36 +83,6 @@ class TaxiDriver(State):
 
     def print(self):
         return str(self.operator)
+        
 
 
-def main():
-    print('Busca A*')
-    env = gym.make("Taxi-v3").env
-    M = np.zeros((env.desc.shape[0],env.desc.shape[1]))
-    M = M.astype(str)
-    points = ["R", "G", "B", "Y"]
-    letters = []
-    for i in range(env.desc.shape[0]):
-        for j in range(env.desc.shape[1]):
-            M[i,j] = env.desc[i,j].decode('UTF-8')
-            if M[i,j] in points:
-                letters.append([i,j])
-    start = [1,6]
-    M[start[0],start[1]] = '0'
-    print(M)
-    map = env.desc
-    state = TaxiDriver(start,letters[0],map,False,'',letters[2])
-    algorithm = AEstrela()
-    ts = time.time()
-    result = algorithm.search(state)
-    tf = time.time()
-    if result != None:
-        print('Achou!')
-        print(result.show_path()+" ; drop off")
-        print(f"Em {tf-ts}")
-    else:
-        print('Nao achou solucao')
-
-
-if __name__ == '__main__':
-    main()
